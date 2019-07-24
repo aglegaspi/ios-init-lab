@@ -408,3 +408,60 @@ var mySteps = Steps8(steps: 9999, goal: 10000)
 mySteps.steps
 mySteps.takeStep()
 mySteps.steps
+
+
+// PG.9
+
+
+//Exercise - Type Properties and Methods
+
+//Imagine you have an app that requires the user to log in. You may have a User struct similar to that shown below. However, in addition to keeping track of specific user information, you might want to have a way of knowing who the current logged in user is. Create a currentUser type property on the User struct below and assign it to a user object representing you. Now you can access the current user through the User struct. Print out the properties of currentUser.
+
+struct User9 {
+    var userName: String
+    var email: String
+    var age: Int
+    var currentUser: String {
+        get {
+            return "The current user is '\(userName)'. their email is: \(email)."
+        }
+    }
+    func logIn(user: User9) {
+        print(user)
+    }
+    
+}
+
+var signedOn = User9(userName: "pehcatzo", email: "peh@cat.zo", age: 99)
+//print(signedOn.currentUser)
+
+
+//There are other properties and actions associated with a User struct that might be good candidates for a type property or method. One might be a method for logging in. Go back and create a type method called logIn(user:) where user is of type User. In the body of the method, assign the passed in user to the currentUser property, and print out a statement using the user's userName saying that the user has logged in.
+
+//Below, call the logIn(user:) method and pass in a different User instance than what you assigned to currentUser above. Observe the printout in the console.
+
+
+// PG.10
+
+//App Exercise - Type Properties and Methods
+
+//These exercises reinforce Swift concepts in the context of a fitness tracking app.
+
+//In another exercise, you added a computed property representing the average mile time from a run. However, you may want to have a calculator of sorts that users can use before their run to find out what mile time they need to average in order to run a given distance in a given time. In this case it might be helpful to have a type method on RunningWorkout that can be accessed without having an instance of RunningWorkout.
+
+//Add to RunningWorkout a type method mileTimeFor(distance:time:) where distance and time are both of type Double. This method should have a return value of type Double. The body of the method should calculate the average mile time needed to cover the passed in distance in the passed in time. Assume that distance is in meters and that one mile is 1600 meters.
+
+//Call the method from outside of the struct and print the result to ensure that it works properly.
+
+struct RunningWorkout10 {
+    var distance: Double
+    var time: Double
+    var elevation: Double
+    
+    static func mileTimeFor(distance: Double, time: Double) -> Double {
+        return distance / time
+    }
+}
+
+RunningWorkout10.mileTimeFor(distance: 1600, time: 10)
+
