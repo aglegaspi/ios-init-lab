@@ -295,3 +295,116 @@ tookAStep.takeStep()
 tookAStep.steps
 
 
+
+
+// PG. 7
+
+
+//Exercise - Computed Properties and Property Observers
+
+//The Rectangle struct below has two properties, one for width and one for height. Add a computed property that computes the area of the rectangle (i.e. width * height). Create an instance of Rectangle and print the area property.
+
+struct Rectangle7 {
+    var width: Int
+    var height: Int
+    var area: Int {
+        get {
+            return width * height
+        }
+    }
+}
+
+var goodRectangle = Rectangle7(width: 10, height: 5)
+goodRectangle.area
+
+//In the Height struct below, height is represented in both inches and centimeters. However, if heightInInches is changed, heightInCentimeters should also adjust to match it. Add a didSet to each property that will check if the other property is what it should be, and if not, sets the proper value. If you set the value of the other property even though it already has the right value, you will end up with an infinite loop of each property setting the other.
+
+//Create an instance of Height and then change one of its properties. Print out the other property to ensure that it was adjusted accordingly.
+
+
+struct Height7 {
+    var heightInInches: Double {
+        didSet {
+            let cm = heightInInches*2.54
+            print("oiweorwerewor")
+            if heightInCentimeters != cm {
+                heightInCentimeters = cm
+            }
+        }
+    }
+    
+    var heightInCentimeters: Double {
+        didSet {
+            let inches = heightInCentimeters/2.54
+            print("helllelrelrllrelr")
+            if heightInInches != inches {
+                heightInInches = inches
+            }
+        }
+    }
+
+    
+    init(heightInInches: Double) {
+        self.heightInInches = heightInInches
+        self.heightInCentimeters = heightInInches*2.54
+    }
+    
+    init(heightInCentimeters: Double) {
+        self.heightInCentimeters = heightInCentimeters
+        self.heightInInches = heightInCentimeters/2.54
+    }
+}
+print("")
+var newHeight = Height7(heightInCentimeters: 175)
+print(newHeight.heightInInches)
+print(newHeight.heightInCentimeters)
+
+// PG.8
+
+
+//App Exercise - Mile Times and Congratulations
+
+//These exercises reinforce Swift concepts in the context of a fitness tracking app.
+
+//The RunningWorkout struct below holds information about your users' running workouts. However, you decide to add information about average mile time. Add a computed property called averageMileTime that uses distance and time to compute the user's average mile time. Assume that distance is in meters and 1600 meters is a mile.
+
+//Create an instance of RunningWorkout and print the averageMileTime property. Check that it works properly.
+
+
+struct RunningWorkout8 {
+    var distance: Double
+    var time: Double
+    var elevation: Double
+    var average: Double {
+        get {
+            return distance/time
+        }
+    }
+}
+
+let myAverage = RunningWorkout8(distance: 3200, time: 20, elevation: 500)
+myAverage.average
+
+//In other app exercises, you've provided encouraging messages to the user based on how many steps they've completed. A great place to check whether or not you should display something to the user is in a property observer.
+
+//In the Steps struct below, add a willSet to the steps property that will check if the new value is equal to goal, and if it is, prints a congratulatory message. Create an instance of Steps where steps is 9999 and goal is 10000, then call takeStep() and see if your message is printed to the console.
+
+struct Steps8 {
+    var steps: Int {
+        willSet(myNewValue) {
+            if myNewValue == goal {
+                print("Congrats you achieved your goal of \(goal) steps!")
+            }
+        }
+    }
+    var goal: Int
+    
+    mutating func takeStep() {
+        steps += 1
+    }
+}
+
+var mySteps = Steps8(steps: 9999, goal: 10000)
+mySteps.steps
+mySteps.takeStep()
+mySteps.steps
