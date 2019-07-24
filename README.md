@@ -8,7 +8,11 @@ Download the resources at the link below:
 https://developer.apple.com/go/?id=app-dev-swift-student (Links to an external site.)
 
 
-Open the folder titled "2 - Introduction to UIKit" then open the folder titled "3 - Structures".  Open the Playground there, and work through the exercises.
+Open the folder titled "2 - Introduction to UIKit" then open the folder titled "3 - Structures".  Open the Playground there, and work through the exercises
+
+```swift
+see 'Structures.playground' folder for answers to Struct Review
+```
 
 
 ## 2: Classes and Inheritance
